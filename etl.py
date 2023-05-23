@@ -4,7 +4,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 from spotipy.oauth2 import SpotifyOAuth
 
-from config import SCOPE, CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, DATABASE_URL
+from config import CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPE, DATABASE_URL
 
 from utils import generate_short_uuid
 from utils import log_exception
