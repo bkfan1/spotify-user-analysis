@@ -30,13 +30,13 @@ def transform(raw_data):
 
         artists_dict = {
             "id": [],
-            "artist_name": [],
+            "name": [],
             "popularity": []
         }
 
         genres_dict = {
             "id": [],
-            "genre_name": []
+            "genre": []
         }
 
         artists_genres_dict = {
@@ -49,15 +49,15 @@ def transform(raw_data):
             artist_id = generate_short_uuid()
 
             artists_dict["id"].append(artist_id)
-            artists_dict["artist_name"].append(artist["name"])
+            artists_dict["name"].append(artist["name"])
             artists_dict["popularity"].append(artist["popularity"])
 
             for genre in artist["genres"]:
-                if genre not in genres_dict["genre_name"]:
+                if genre not in genres_dict["genre"]:
                     genre_id = generate_short_uuid()
 
                     genres_dict["id"].append(genre_id)
-                    genres_dict["genre_name"].append(genre)
+                    genres_dict["genre"].append(genre)
 
                     artists_genres_dict["artist_id"].append(artist_id)
                     artists_genres_dict["genre_id"].append(genre_id)
