@@ -1,5 +1,11 @@
-CLIENT_ID = "f42d1161ed514b99bc08f5b156d0e76a"
-CLIENT_SECRET = "268ee86139b84192a1804986578276de"
-REDIRECT_URI = "http://localhost:8888/callback/"
-SCOPE = "user-top-read"
-DATABASE_URL="sqlite:///user_data_spotify.db"
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
+REDIRECT_URI = os.getenv("REDIRECT_URI")
+SCOPE = os.getenv("SCOPE")
+DATABASE_URL= os.getenv("DATABASE_URL")
+
