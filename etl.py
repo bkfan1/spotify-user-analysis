@@ -35,36 +35,48 @@ def transform(raw_data):
         }
 
         genres_dict = {
-            "id": [],
-            "genre": []
+            "id":[],
+            "genre":[]
         }
 
         artists_genres_dict = {
-            "genre_id": [],
-            "artist_id": []
+            "artist_id": [],
+            "genre_id": []
         }
 
-        for artist in user_top_artists:
 
+      
+
+        for artist in user_top_artists:
             artist_id = generate_short_uuid()
+            artist_name = artist["name"]
+            artist_popularity = artist["popularity"]
 
             artists_dict["id"].append(artist_id)
-            artists_dict["name"].append(artist["name"])
-            artists_dict["popularity"].append(artist["popularity"])
+            artists_dict["name"].append(artist_name)
+            artists_dict["popularity"].append(artist_popularity)
+
 
             for genre in artist["genres"]:
+
+                genre_id = ""
                 if genre not in genres_dict["genre"]:
                     genre_id = generate_short_uuid()
 
                     genres_dict["id"].append(genre_id)
                     genres_dict["genre"].append(genre)
 
-                    artists_genres_dict["artist_id"].append(artist_id)
-                    artists_genres_dict["genre_id"].append(genre_id)
+                else:
+                    index = genres_dict["genre"].index(genre)
+                    genre_id = genres_dict["id"][index]
+                
+                artists_genres_dict["artist_id"].append(artist_id)
+                artists_genres_dict["genre_id"].append(genre_id)
 
         artists_df = pd.DataFrame(data=artists_dict)
         genres_df = pd.DataFrame(data=genres_dict)
         artists_genres_df = pd.DataFrame(data=artists_genres_dict)
+
 
         data = [
             {
