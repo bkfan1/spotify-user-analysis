@@ -6,7 +6,7 @@ from spotipy.oauth2 import SpotifyOAuth
 
 import json
 
-from config import CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPE, DATABASE_URL
+from config import CLIENT_ID, CLIENT_SECRET, REDIRECT_URI, SCOPE, TARGET_DATABASE_URL
 from utils import music_pitches
 
 # ETL functions related to user's top artists
@@ -80,7 +80,7 @@ def load_user_top_artists():
         df = pd.read_csv("user_top_artists_CLEANED.csv")
 
         # Creating an engine to connect to target database
-        engine = create_engine(url=DATABASE_URL)
+        engine = create_engine(url=TARGET_DATABASE_URL)
 
         # Uploading the cleaned data to target database
         df.to_sql(name="user_top_artists",
@@ -188,7 +188,7 @@ def load_user_top_tracks():
         user_top_tracks_df = pd.read_csv("user_top_tracks_CLEANED.csv")
 
         # Creating a SQLAlchemy engine to connect to target database
-        engine = create_engine(url=DATABASE_URL)
+        engine = create_engine(url=TARGET_DATABASE_URL)
 
         # Loading the user top tracks to target database
         user_top_tracks_df.to_sql(name="user_top_tracks",
